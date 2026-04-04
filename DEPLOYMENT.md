@@ -50,6 +50,12 @@ PORT=3001
 VITE_API_URL=http://localhost:3001/api
 ```
 
+**注意**：
+- 开发环境：使用 `client/.env` 文件
+- 生产环境：使用 `client/.env.production` 文件
+- `VITE_API_URL` 必须包含完整的API路径（例如：`https://your-backend-domain.com/api`）
+- 如果不设置 `VITE_API_URL`，默认使用 `/api`（适用于同域部署）
+
 ## 部署步骤
 
 ### 1. 前端部署

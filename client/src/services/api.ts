@@ -1,12 +1,14 @@
 import type { Story } from '../constants/stories'
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
+
 export async function askAI(
   question: string,
   story: Story,
   questionCount: number = 0
 ): Promise<{ reply: string; isSolved: boolean }> {
   try {
-    const response = await fetch('/api/chat', {
+    const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +39,7 @@ export async function askAI(
 
 export async function getStories(): Promise<Story[]> {
   try {
-    const response = await fetch('/api/stories')
+    const response = await fetch(`${API_BASE_URL}/stories`)
     
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
@@ -55,7 +57,7 @@ export async function getStories(): Promise<Story[]> {
 
 export async function getStoryById(id: string): Promise<Story | null> {
   try {
-    const response = await fetch(`/api/stories/${id}`)
+    const response = await fetch(`${API_BASE_URL}/stories/${id}`)
     
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
